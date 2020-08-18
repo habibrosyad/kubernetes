@@ -1018,6 +1018,7 @@ func validatePatchWithSetOrderList(patchList, setOrderList interface{}, mergeKey
 	if patchIndex < len(nonDeleteList) && setOrderIndex >= len(typedSetOrderList) {
 		return fmt.Errorf("The order in patch list:\n%v\n doesn't match %s list:\n%v\n", typedPatchList, setElementOrderDirectivePrefix, setOrderList)
 	}
+	//lint:ignore SA4006,SA4010 underlying array of typedPatchList is modified here if the execution reached this block and mergeKey is empty.
 	typedPatchList = append(nonDeleteList, toDeleteList...)
 	return nil
 }
